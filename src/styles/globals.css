@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne+Mono&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===============================
+   🌟 Hardcoded Colors and Fonts
+================================*/
+body {
+  background-color: #000000; /* CRT Black Background */
+  color: #00FF41; /* Green Computer Text */
+  font-family: 'Syne Mono', monospace;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 0 2px #00FF41, 0 0 5px #00FF41;
+}
+
+/* ===============================
+   🌙 Dark Mode (for CRT Vibe)
+================================*/
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    color: #00FF41;
+  }
+}
+
+/* ===============================
+   🌟 Typography
+================================*/
+h1, h2, h3 {
+  font-family: 'Syne Mono', monospace;
+}
+
+p, span, li {
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers vertically */
+  align-items: flex-start; /* Aligns content to the left */
+  min-height: 100vh; /* Takes full screen height */
+  padding-left: 8rem; /* Adjust left spacing */
+  width: 50%; /* Optional: Limit text container width */
+}
+
+/* ===============================
+   🌟 Layout Styling
+================================*/
+.container {
+
+}
+
+/* ===============================
+   🌟 Retro Button Styling
+================================*/
+button {
+  font-family: 'Syne Mono', monospace;
+  text-shadow: 0 0 2px #00FF41, 0 0 5px #00FF41;
+  border-radius: 4px;
+}
+
+/* ===============================
+   🌟 CRT Flicker Animation
+================================*/
+@keyframes crt-flicker {
+  0%, 5%, 10%, 15%, 25%, 30%, 35%, 40%, 50%, 55%, 60%, 75%, 80%, 85%, 90% {
+    opacity: 1;
+  }
+  20%, 45%, 70% {
+    opacity: 0.85;
+  }
+  95% {
+    opacity: 0.7;
+  }
+}
+
+body {
+  animation: crt-flicker 0.1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: #00FF41;
+  animation: blink 1s step-start infinite;
+  margin-left: 0rem;
+}
+/* ===============================
+   🌟 Catchphrase Fade-in
+================================*/
+.fade-in-delay-3 {
+  animation: fadeIn 0.6s 1.2s forwards;
+  opacity:1;
+}
+
+/* ===============================
+   🌟 CRT Button Styling
+================================*/
+.crt-button {
+  font-family: 'Syne Mono', monospace;
+  font-size: 2rem;
+  color: #00FF41;
+  background-color: transparent;
+  border: 2px solid #00FF41;
+  padding: 0.75rem 1.5rem;
+  display: inline-block;
+  text-align: center;
+  flex: 0; /* Ensures the buttons grow equally inside a flex container */
+  max-width: 300px; /* Optional: cap the growth with max-width */
+  min-width: 350px;
+  text-shadow: 0 0 2px #00FF41, 0 0 5px #00FF41;
+  box-shadow: inset 0 0 5px #00FF41, 0 0 15px #00FF41;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  margin-right: 15rem;
+}
+
+.crt-button:hover {
+  background-color: #00FF41;
+  color: #000000;
+  box-shadow: inset 0 0 10px #00FF41, 0 0 20px #00FF41;
+  cursor: pointer;
+}
+
+/* ===============================
+   🌟 Fade-In Animations
+================================*/
+.fade-in-delay-1 {
+  animation: fadeIn 0.6s 1s forwards;
+}
+
+.fade-in-delay-2 {
+  animation: fadeIn 0.6s 1.6s forwards;
+}
+
+.fade-in-delay-3 {
+  animation: fadeIn 0.6s 2.4s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+/* ===============================
+   🌟 Smooth Fade-In
+================================*/
+.fade-in-smooth {
+  animation: fadeInSmooth 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeInSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.center-vertically {
+  /* Center the div vertically in the viewport */
+  display: flex;
+  justify-content: center; /* Horizontal alignment */
+  align-items: center;    /* Vertical alignment */
+  height: 100vh; /* Full viewport height */
+}
+.large-catchphrase {
+  font-size: 1.5rem; /* or any larger size */
+  line-height: 1.2; /* Optional, tweak spacing */
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap; /* Prevents text wrapping */
+  text-align: center;  /* Centers the text if needed */
+  display: block;      /* Ensures consistent layout */
+  overflow: hidden;    /* Prevents overflowing content */
+
+}
+
+/*============================================================
+                  CONTACT
+=================================================================
+ */
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem; /* Adds comfortable padding */
+  background-color: black;
+  color: #00FF41; /* CRT green color */
+  border: 1px solid #00FF41; /* Retro border styling */
+  border-radius: 0.5rem; /* Slightly rounded edges */
+  box-shadow: inset 0 0 5px #00FF41; /* CRT glow effect for inputs */
+  font-family: 'Syne Mono', monospace; /* Matches the theme */
+  font-size: 1rem; /* Clean, readable font size */
+  outline: none; /* Removes default focus styling */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  margin-right: 1rem;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41; /* Adds glow during focus */
+  background-color: #001f00; /* Slightly brighter black when focused */
+}
+
+.input-field::placeholder {
+  color: #00FF41; /* Matches text color for consistency */
+  opacity: 0.7; /* Slightly faded for placeholder */
+}
+.contact-me-text {
+  font-size: 3rem;
+}
+.send-button {
+  width: 100%;
+  padding: 0.75rem;
+
+  box-shadow: inset 0 0 5px #00FF41;
+}
+
+.contact-flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+form {
+  width: 100%;
+  margin: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+/*==================================================
+                  FOOTER
+======================================================
+ */
+/* For the "Website by Laura Chipman" styling */
+.footer .text-sm .glitch {
+  font-family: 'Syne Mono', monospace; /* Example font for a "glitchy" feel */
+  text-shadow: 0 0 5px #32CD32, 0 0 5px #32CD32, 0 0 2px #32CD32; /* Green glowing effect */
+  margin-left: 1rem;
+
+}
+
+/* Glitch animation for text */
+@keyframes glitch-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-.5px, 1px);
+  }
+  40% {
+    transform: translate(1px, -.5px);
+  }
+  60% {
+    transform: translate(-.5px, -.5px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* For the links */
+.footer a {
+  color: #32CD32; /* Light green text */
+  text-decoration: none; /* No underline */
+  transition: color 0.2s ease, transform 0.2s ease; /* Smooth color and transform changes */
+  margin-right: 1rem;
+}
+
+.footer a:hover {
+  color: #00FF00; /* Brighter green on hover */
+  transform: scale(1.1); /* Slightly enlarge the link icon on hover */
+}
+
+/*===================================================
+            PROJECTS
+=====================================================
+ */
+.projects-text{
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+.project-title {
+  font-family: 'Syne Mono', monospace; /* CRT retro feel */
+  color: #00FF41; /* CRT green color */
+  font-size: 2rem; /* Adjust as needed for size */
+  text-shadow: 0 0 3px #00FF41, 0 0 5px #00FF41; /* Subtle glow effect */
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+  transition: color 0.3s ease; /* Smooth hover effect */
+  text-decoration: none; /* No underline */
+}
+
+.project-title:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
+.project-description {
+  align-content: center;
+  font-family: 'DM Sans', sans-serif;
+  color: #32CD32; /* Slightly lighter CRT green */
+  font-size: 1rem; /* Adjust size for readability */
+  line-height: 1.6;
+  margin-left: 2rem;
+  text-shadow: 0 0 2px #32CD32, 0 0 6px #32CD32; /* Soft glow */
+  transition: color 0.3s ease; /* Smooth hover effect */
+  text-decoration: none; /* No underline */
+}
+
+.project-description:hover {
+  color: #ffffff; /* Change to white on hover */
+}
+
+.projects-container {
+  border: none; /* Removes the extra border */
+  box-shadow: none; /* Removes shadow (if any) */
+  outline: none; /* Removes any possible outline */
+}
