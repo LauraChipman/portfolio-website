@@ -15,8 +15,17 @@ const projects = [
         title: "Interactive Glossary Application",
         description: "A Flask-powered interactive glossary with CRUD operations, MongoDB, and GridFS image handling.",
         longDescription: "This glossary tool supports full CRUD operations, rich text formatting, image uploads, and search/filtering features. Built in Flask with MongoDB Atlas, styled with Bootstrap and enhanced with Quill.js.",
-        images: [ "/images/glossary-demo1.gif",
-            "/images/glossary-demo2.gif"],
+        images: [
+            {
+                src: "/images/glossary-demo2.gif",
+                caption: "User viewing the tags, opening the interactive content, showcasing the edit and delete buttons and using the back to top and close all topics features"
+            },
+            {
+                src: "/images/glossary-demo1.gif",
+                caption: "User creating a new topic, viewing new topic as well as it appearance it the stats feature and then deleting the new entry."
+            }
+        ],
+
         link: "https://github.com/LauraChipman/Glossary",
     },
     {

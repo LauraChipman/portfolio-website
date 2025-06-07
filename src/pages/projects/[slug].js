@@ -29,16 +29,21 @@ export default function ProjectPage() {
 
                     {project.images?.length > 0 && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                            {project.images.map((src, i) => (
-                                <img
-                                    key={i}
-                                    src={src}
-                                    alt={`Screenshot ${i + 1}`}
-                                    className="w-full rounded-lg shadow-md"
-                                />
+                            {project.images.map(({ src, caption }, i) => (
+                                <div key={i} className="flex flex-col items-center">
+                                    <img
+                                        src={src}
+                                        alt={caption || `Screenshot ${i + 1}`}
+                                        className="w-full rounded-lg shadow-md mb-2"
+                                    />
+                                    {caption && (
+                                        <p className="text-sm text-green-300 text-center">{caption}</p>
+                                    )}
+                                </div>
                             ))}
                         </div>
                     )}
+
 
                     <div className="flex flex-col sm:flex-row justify-center gap-6 mt-4">
                         {project.link && (

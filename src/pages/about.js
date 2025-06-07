@@ -13,24 +13,57 @@ export default function About() {
             </Head>
             <div className="min-h-screen bg-black text-green-400 px-6 font-mono flex flex-col justify-between">
                 <div className="max-w-4xl mt-10 mx-auto text-lg leading-relaxed">
-                    <h1 className="text-4xl mb-6 text-white">About Me</h1>
+                    <h1 className="text-4xl mb-6 text-white">[ ABOUT ME ]</h1>
+
                     <p className="fade-in-smooth">
-                        Hey there! I&apos;m Laura Chipman — a frontend web developer, creative chameleon,
-                        and lifelong lover of all things visual and expressive. With roots in fine arts and a passion
-                        for storytelling through design, I build digital experiences that are not only functional,
-                        but deeply personal.
+                        I&apos;m Laura — a frontend-focused developer with an unconventional but impactful journey into tech.
+                        Before diving into programming, I studied visual and creative arts and spent years working in
+                        fast-paced environments that demanded adaptability, empathy, and resourcefulness. Now, I bring that
+                        same energy and creativity into writing clean, meaningful code.
                     </p>
+
                     <p className="mt-4 fade-in-smooth">
-                        I hold a diploma in Visual and Creative Arts with a specialty in Drawing and Painting from the
-                        Haliburton School of the Arts (Fleming College), and a diploma in Makeup Artistry and Design
-                        from the College of Makeup Art and Design. These creative foundations sharpened my eye for detail,
-                        layout, and emotional tone — all essential to building memorable digital experiences.
+                        Whether I&apos;m building a Flask app that interfaces with MongoDB or designing retro-inspired
+                        layouts with React and Tailwind CSS, I&apos;m all in — learning by doing, asking smart questions,
+                        and refining my skills through real-world projects. I&apos;ve developed a glossary web app from
+                        scratch, created a full-stack event site for a live music venue, and continue to experiment with
+                        tools that allow me to blend design and logic.
                     </p>
+
                     <p className="mt-4 fade-in-smooth">
-                        I also recently completed the Computer Programming program at Lambton College, where I developed
-                        full-stack technical skills and experience in modern web development, DevOps, and software architecture.
-                        This blend of art and code is at the heart of how I approach frontend development today.
+                        I’m actively seeking opportunities to contribute to collaborative, forward-thinking teams — especially
+                        those open to mentoring new grads who are eager, quick to grow, and full of ideas. If you&apos;re looking
+                        for a creative technologist with drive, heart, and a serious love for making things work beautifully,
+                        let’s connect.
                     </p>
+
+                    {/* Skills Section */}
+                    <h2 className="text-3xl mt-12 mb-4 text-center text-white">[ SKILLS ]</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 fade-in-smooth">
+                        <div>
+                            <h3 className="text-2xl mb-2 text-green-300">TECHNICAL</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li>Python, Flask, and MongoDB (Atlas & GridFS)</li>
+                                <li>Java EE (Lombok, JUnit, Maven, JSON processing)</li>
+                                <li>Full-Stack JavaScript (Node.js, Express, React, Next.js)</li>
+                                <li>Git, GitHub, and GitHub Actions (CI/CD pipelines)</li>
+                                <li>RESTful APIs and secure secrets management</li>
+                                <li>Responsive design using Tailwind CSS and Bootstrap</li>
+                                <li>Unit testing, CRUD operations, database integration</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-2xl mb-2 text-green-300">SOFT</h3>
+                            <ul className="list-disc list-inside space-y-1">
+                                <li>Creative problem-solving and design thinking</li>
+                                <li>Visual storytelling and UI/UX awareness</li>
+                                <li>Strong communicator and empathetic collaborator</li>
+                                <li>Adaptable, self-motivated, and a fast learner</li>
+                                <li>Thrives in both independent and team settings</li>
+                                <li>Passionate about bridging creativity with code</li>
+                            </ul>
+                        </div>
+                    </div>
 
                     {/* Contact Icons */}
                     <div className="mt-12 flex flex-wrap gap-12 justify-center items-center">
