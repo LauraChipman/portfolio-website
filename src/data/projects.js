@@ -15,7 +15,8 @@ const projects = [
         title: "Interactive Glossary Application",
         description: "A Flask-powered interactive glossary with CRUD operations, MongoDB, and GridFS image handling.",
         longDescription: "This glossary tool supports full CRUD operations, rich text formatting, image uploads, and search/filtering features. Built in Flask with MongoDB Atlas, styled with Bootstrap and enhanced with Quill.js.",
-        images: ["/images/glossary1.png"],
+        images: [ "/images/glossary-demo1.gif",
+            "/images/glossary-demo2.gif"],
         link: "https://github.com/LauraChipman/Glossary",
     },
     {
@@ -24,7 +25,6 @@ const projects = [
         title: "Portfolio Website",
         description: "A personalized portfolio website showcasing my skills, built with Next.js and Tailwind CSS.",
         longDescription: "My portfolio website reflects my development journey and aesthetic. It includes retro CRT-inspired UI elements, project showcases, and interactive sections. Built with Next.js and Tailwind CSS.",
-        images: ["/images/portfolio1.gif"],
         link: "https://laurachipmandesigns.com",
     },
 ];

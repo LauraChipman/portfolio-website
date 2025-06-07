@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {FaGithub, FaLinkedin, FaEnvelope} from "react-icons/fa";
 import Footer from "@/components/Footer";
 
 const projects = [
@@ -35,6 +35,8 @@ export default function Home() {
     const [activePreview, setActivePreview] = useState(null);
     const [hideButtons, setHideButtons] = useState(false);
     const router = useRouter();
+    const [hoverTimeout, setHoverTimeout] = useState(null);
+
 
     useEffect(() => {
         let index = 0;
@@ -53,15 +55,23 @@ export default function Home() {
 
     const handleMouseEnter = (type) => {
         if (!bootUp) return;
-        setHideButtons(true);
-        setActivePreview(type);
+
+        // Clear any previous timeouts
+        if (hoverTimeout) clearTimeout(hoverTimeout);
+
+        // Delay preview open to avoid accidental flicker
+        const timeout = setTimeout(() => {
+            setHideButtons(true);
+            setActivePreview(type);
+        }, 200); // 200ms feels intentional without lag
+
+        setHoverTimeout(timeout);
     };
 
     const handleMouseLeave = () => {
-        setTimeout(() => {
-            setActivePreview(null);
-            setHideButtons(false);
-        }, 200);
+        if (hoverTimeout) clearTimeout(hoverTimeout);
+        setActivePreview(null);
+        setHideButtons(false);
     };
 
     return (
@@ -71,7 +81,7 @@ export default function Home() {
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-7xl px-4">
                     {/* Left: Name + Catchphrase */}
                     <div className="w-full lg:w-[60%] flex flex-col items-start text-left">
-                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-primary mb-4 glitch break-words">
+                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-primary mb-4 crt-flicker glitch break-words">
                             {text}
                             <span className="blinking-cursor">|</span>
                         </h1>
@@ -110,6 +120,15 @@ export default function Home() {
                         >
                             [ Contact Me ]
                         </button>
+                        <button
+                            className={`crt-button w-full max-w-[450px] text-green text-lg ${
+                                bootUp ? "fade-in-delay-4" : "hidden"
+                            }`}
+                            onClick={() => router.push("/about")}
+                        >
+                            [ About Me ]
+                        </button>
+
                     </div>
                 </div>
 
@@ -119,7 +138,7 @@ export default function Home() {
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md p-6 rounded-lg hover:bg-green-400/10 transition duration-300 shadow-xl border border-green-500 z-50"
                         onMouseLeave={handleMouseLeave}
                     >
-                        {activePreview === "projects" ? (
+                        {activePreview === "projects" && (
                             <>
                                 <h3
                                     className="text-white mb-6 font-mono hover:text-green-500 cursor-pointer text-[2.5rem]"
@@ -131,31 +150,32 @@ export default function Home() {
                                     {projects.map((project) => (
                                         <div
                                             key={project.id}
-                                            className="hover:text-white cursor-pointer text-[2rem] transition-all duration-200"
+                                            className="flex flex-col items-center group cursor-pointer transition-all duration-200"
                                             onClick={() => router.push(project.link)}
                                         >
-                                            {project.title}
+                                            <div className="text-[2rem] group-hover:text-white">{project.title}</div>
+                                            <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-center max-w-xs">
+                {project.description}
+              </span>
                                         </div>
                                     ))}
                                 </div>
                             </>
-                        ) : (
+                        )}
+
+                        {activePreview === "contact" && (
                             <>
-                                <h3 className="text-white mb-6 font-mono text-[2.5rem]">
-                                    Contact Links
-                                </h3>
+                                <h3 className="text-white mb-6 font-mono text-[2.5rem]">Contact Links</h3>
                                 <div className="flex flex-wrap gap-8 justify-center items-center">
                                     {/* GitHub */}
                                     <div className="flex flex-col items-center group">
                                         <FaGithub
                                             className="hover:text-white cursor-pointer text-[3rem] sm:text-[4rem] md:text-[6rem] transition-transform group-hover:scale-110"
-                                            onClick={() =>
-                                                window.open("https://github.com/LauraChipman", "_blank")
-                                            }
+                                            onClick={() => window.open("https://github.com/LauraChipman", "_blank")}
                                         />
                                         <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
-                      GitHub
-                    </span>
+              GitHub
+            </span>
                                     </div>
 
                                     {/* LinkedIn */}
@@ -163,15 +183,12 @@ export default function Home() {
                                         <FaLinkedin
                                             className="hover:text-white cursor-pointer text-[3rem] sm:text-[4rem] md:text-[6rem] transition-transform group-hover:scale-110"
                                             onClick={() =>
-                                                window.open(
-                                                    "https://www.linkedin.com/in/laura-chipman-331641333/",
-                                                    "_blank"
-                                                )
+                                                window.open("https://www.linkedin.com/in/laura-chipman-331641333/", "_blank")
                                             }
                                         />
                                         <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
-                      LinkedIn
-                    </span>
+              LinkedIn
+            </span>
                                     </div>
 
                                     {/* Email */}
@@ -181,18 +198,24 @@ export default function Home() {
                                             onClick={() => router.push("/contact")}
                                         />
                                         <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
-                      Contact
-                    </span>
+              Contact
+            </span>
                                     </div>
                                 </div>
                             </>
                         )}
+
+                        {/* About Hover (Optional Content or Just Disable Preview) */}
+                        {activePreview === "about" && (
+                            <h3 className="text-white font-mono text-2xl text-center">Learn more about me!</h3>
+                        )}
                     </div>
                 )}
+
             </div>
 
             {/* Footer sticks to bottom */}
-            <Footer />
+            <Footer/>
         </div>
     );
 }

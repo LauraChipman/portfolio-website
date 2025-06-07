@@ -34,7 +34,7 @@ export default function ProjectPage() {
                                     key={i}
                                     src={src}
                                     alt={`Screenshot ${i + 1}`}
-                                    className="w-full rounded-lg shadow-[0_0_15px_#00ff88]"
+                                    className="w-full rounded-lg shadow-md"
                                 />
                             ))}
                         </div>
@@ -46,7 +46,7 @@ export default function ProjectPage() {
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="crt-button text-green-500 text-center"
+                                className="text-green-500 text-center"
                             >
                                 [ View Live / GitHub ]
                             </a>
