@@ -45,7 +45,7 @@ export default function ContactForm() {
 
     return (
         <div className="contact-flex flex-col items-start bg-black  text-green-500  shadow-lg  mx-auto  rounded-lg ">
-            <h1 className="contact-me-text mb-6 glitch w-full">[ CONTACT ME ]</h1>
+            <h1 className="contact-me-text mb-6 mt-10 glitch text-white w-full">[ CONTACT ME ]</h1>
             <form onSubmit={handleSubmit} className="w-full space-y-6">
                 <div className="space-y-2">
                     <label htmlFor="name" className="block text-lg">
@@ -89,19 +89,18 @@ export default function ContactForm() {
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="send-button mt-4 px-6 py-3 text-green-500 border-2 border-green-500 hover:bg-green-500 hover:text-black rounded-lg transition-all"
+                        className="send-button mt-10 mb-10 px-6 py-3 text-green-500 border-2 border-green-500 hover:bg-green-500 hover:text-black rounded-lg transition-all"
                     >
                         [ Send Message ]
                     </button>
                 </div>
                 <div
-                    className=" right-8 bg-slate-800 text-green-500 font-mono px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 cursor-pointer shadow-lg border border-green-500"
+                    className="mt-50  bg-black text-green-500 font-mono px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 cursor-pointer shadow-lg border border-green-500"
                     onClick={() => router.push("/")}
                 >
                     ◀◀◀◀ Back to Home
                 </div>
             </form>
-
         </div>
 
     );

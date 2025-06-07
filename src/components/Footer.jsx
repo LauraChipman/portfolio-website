@@ -25,7 +25,7 @@ export default function Footer() {
                         <FaLinkedin size={24} />
                     </a>
                     <a
-                        href="mailto:laurachipman66@gmail.com"
+                        href="/contact"
                         className="text-green-500 hover:text-green-300 transition"
                     >
                         <FaEnvelope size={24} />

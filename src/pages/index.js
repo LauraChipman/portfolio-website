@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import Footer from "@/components/Footer";
 
 const projects = [
     {
         id: 1,
         title: "AJ’s Bar & Music Hall",
-        description: "A full-scale event and music venue website with MongoDB, Next.js, and Tailwind CSS.",
-        link: "/projects/ajs-bar-music-hall"
+        description:
+            "A full-scale event and music venue website with MongoDB, Next.js, and Tailwind CSS.",
+        link: "/projects/ajs-bar-music-hall",
     },
     {
         id: 2,
         title: "Interactive Glossary Application",
-        description: "A Flask-powered interactive glossary with CRUD operations, MongoDB, and GridFS image handling.",
-        link: "/projects/interactive-glossary"
+        description:
+            "A Flask-powered interactive glossary with CRUD operations, MongoDB, and GridFS image handling.",
+        link: "/projects/interactive-glossary",
     },
     {
         id: 3,
         title: "Portfolio Website",
-        description: "A personalized portfolio website showcasing my skills, built with Next.js and Tailwind CSS.",
-        link: "/projects/portfolio-website"
-    }
+        description:
+            "A personalized portfolio website showcasing my skills, built with Next.js and Tailwind CSS.",
+        link: "/projects/portfolio-website",
+    },
 ];
 
 export default function Home() {
@@ -28,7 +32,7 @@ export default function Home() {
     const fullText = "LAURA CHIPMAN";
     const [bootUp, setBootUp] = useState(false);
     const [showCatchphrase, setShowCatchphrase] = useState(false);
-    const [activePreview, setActivePreview] = useState(null); // "projects" or "contact"
+    const [activePreview, setActivePreview] = useState(null);
     const [hideButtons, setHideButtons] = useState(false);
     const router = useRouter();
 
@@ -47,9 +51,8 @@ export default function Home() {
         return () => clearInterval(typingInterval);
     }, [fullText]);
 
-    // Handle hover with a slight delay to avoid flickering
     const handleMouseEnter = (type) => {
-        if (!bootUp) return; // Prevent hover effect if buttons are not fully faded in
+        if (!bootUp) return;
         setHideButtons(true);
         setActivePreview(type);
     };
@@ -62,91 +65,134 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen flex bg-black text-green-500 relative">
-            <div className="hero">
-                <h1 className="text-[6rem] font-primary mb-4 glitch inline-flex">
-                    {text}
-                    <span className="blinking-cursor">|</span>
-                </h1>
-                <div className="h-[3rem]">
-                    {showCatchphrase && (
-                        <p className="large-catchphrase mt-4 font-secondary opacity-0 fade-in-smooth">
-                            Frontend Web Developer | Creative Chameleon | Committed to Delivering the Best
-                        </p>
-                    )}
+        <div className="flex flex-col min-h-screen bg-black text-green-500">
+            {/* MAIN CONTENT: Centered vertically and horizontally */}
+            <div className="flex-grow flex items-center justify-center px-4">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-7xl px-4">
+                    {/* Left: Name + Catchphrase */}
+                    <div className="w-full lg:w-[60%] flex flex-col items-start text-left">
+                        <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-primary mb-4 glitch break-words">
+                            {text}
+                            <span className="blinking-cursor">|</span>
+                        </h1>
+
+                        {showCatchphrase && (
+                            <p className="text-sm sm:text-base md:text-lg lg:text-xl fade-in-smooth font-secondary max-w-[90%] leading-snug text-left">
+                                Frontend Web Developer |
+                                Creative Chameleon | Committed to Delivering the Best
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Right: Buttons */}
+                    <div
+                        className={`w-full lg:w-[40%] flex flex-col gap-4 justify-center items-center transition-transform duration-500 ${
+                            hideButtons
+                                ? "-translate-y-10 opacity-0"
+                                : "translate-y-0 opacity-100"
+                        }`}
+                    >
+                        <button
+                            className={`crt-button w-full max-w-[450px] text-lg ${
+                                bootUp ? "fade-in-delay-2" : "hidden"
+                            }`}
+                            onMouseOver={() => handleMouseEnter("projects")}
+                            onClick={() => router.push("/projects")}
+                        >
+                            [ See My Work ]
+                        </button>
+                        <button
+                            className={`crt-button w-full max-w-[450px] text-lg ${
+                                bootUp ? "fade-in-delay-3" : "hidden"
+                            }`}
+                            onMouseOver={() => handleMouseEnter("contact")}
+                            onClick={() => router.push("/contact")}
+                        >
+                            [ Contact Me ]
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <div
-                className={`flex flex-col gap-4 mr-24 center-vertically transition-transform duration-500 ${
-                    hideButtons ? "-translate-y-10 opacity-0" : "translate-y-0 opacity-100"
-                }`}
-            >
-                <button
-                    className={`crt-button ${bootUp ? "fade-in-delay-2" : "hidden"}`}
-                    onMouseOver={() => handleMouseEnter("projects")}
-                    onClick={() => router.push("/projects")}
-                >
-                    [ See My Work ]
-                </button>
-                <button
-                    className={`crt-button ${bootUp ? "fade-in-delay-3" : "hidden"}`}
-                    onMouseOver={() => handleMouseEnter("contact")}
-                    onClick={() => router.push("/contact")}
-                >
-                    [ Contact Me ]
-                </button>
-            </div>
-
-            {/* Shared Preview Container */}
-            {activePreview && (
-                <div
-                    className="absolute top-[20%] right-[5%] bg-slate-800 p-10 rounded-lg shadow-lg w-[600px] pointer-events-auto transition-all duration-300"
-                    onMouseLeave={handleMouseLeave}
-                >
-                    {activePreview === "projects" ? (
-                        <>
-                            <h3
-                                className="text-green-400 mb-6 font-mono hover:text-green-500 cursor-pointer text-[2.5rem]"
-                                onClick={() => router.push("/projects")}
-                            >
-                                Projects
-                            </h3>
-                            <div className="flex flex-col gap-6">
-                                {projects.map((project) => (
-                                    <div
-                                        key={project.id}
-                                        className="hover:text-green-500 cursor-pointer text-[2rem] transition-all duration-200"
-                                        onClick={() => router.push(project.link)}
-                                    >
-                                        {project.title}
+                {/* Preview Box */}
+                {activePreview && (
+                    <div
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md p-6 rounded-lg hover:bg-green-400/10 transition duration-300 shadow-xl border border-green-500 z-50"
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        {activePreview === "projects" ? (
+                            <>
+                                <h3
+                                    className="text-white mb-6 font-mono hover:text-green-500 cursor-pointer text-[2.5rem]"
+                                    onClick={() => router.push("/projects")}
+                                >
+                                    Projects
+                                </h3>
+                                <div className="flex flex-col gap-6">
+                                    {projects.map((project) => (
+                                        <div
+                                            key={project.id}
+                                            className="hover:text-white cursor-pointer text-[2rem] transition-all duration-200"
+                                            onClick={() => router.push(project.link)}
+                                        >
+                                            {project.title}
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <h3 className="text-white mb-6 font-mono text-[2.5rem]">
+                                    Contact Links
+                                </h3>
+                                <div className="flex flex-wrap gap-8 justify-center items-center">
+                                    {/* GitHub */}
+                                    <div className="flex flex-col items-center group">
+                                        <FaGithub
+                                            className="hover:text-white cursor-pointer text-[3rem] sm:text-[4rem] md:text-[6rem] transition-transform group-hover:scale-110"
+                                            onClick={() =>
+                                                window.open("https://github.com/LauraChipman", "_blank")
+                                            }
+                                        />
+                                        <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                      GitHub
+                    </span>
                                     </div>
-                                ))}
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <h3 className="text-green-400 mb-6 font-mono text-[2.5rem]">
-                                Contact Links
-                            </h3>
-                            <div className="flex gap-16 justify-center items-center">
-                                <FaGithub
-                                    className="hover:text-green-500 cursor-pointer text-[6rem] transition-transform hover:scale-110"
-                                    onClick={() => window.open("https://github.com/LauraChipman", "_blank")}
-                                />
-                                <FaLinkedin
-                                    className="hover:text-green-500 cursor-pointer text-[6rem] transition-transform hover:scale-110"
-                                    onClick={() => window.open("https://www.linkedin.com/in/laura-chipman-331641333/", "_blank")}
-                                />
-                                <FaEnvelope
-                                    className="hover:text-green-500 cursor-pointer text-[6rem] transition-transform hover:scale-110"
-                                    onClick={() => router.push("/contact")}
-                                />
-                            </div>
-                        </>
-                    )}
-                </div>
-            )}
+
+                                    {/* LinkedIn */}
+                                    <div className="flex flex-col items-center group">
+                                        <FaLinkedin
+                                            className="hover:text-white cursor-pointer text-[3rem] sm:text-[4rem] md:text-[6rem] transition-transform group-hover:scale-110"
+                                            onClick={() =>
+                                                window.open(
+                                                    "https://www.linkedin.com/in/laura-chipman-331641333/",
+                                                    "_blank"
+                                                )
+                                            }
+                                        />
+                                        <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                      LinkedIn
+                    </span>
+                                    </div>
+
+                                    {/* Email */}
+                                    <div className="flex flex-col items-center group">
+                                        <FaEnvelope
+                                            className="hover:text-white cursor-pointer text-[3rem] sm:text-[4rem] md:text-[6rem] transition-transform group-hover:scale-110"
+                                            onClick={() => router.push("/contact")}
+                                        />
+                                        <span className="text-sm text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity font-mono">
+                      Contact
+                    </span>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                )}
+            </div>
+
+            {/* Footer sticks to bottom */}
+            <Footer />
         </div>
     );
 }

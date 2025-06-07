@@ -6,7 +6,7 @@ Welcome to the source code for my personal developer portfolio. This site showca
 
 ## 🌐 Live Website
 
-🔗 [laurachipman.netlify.app](https://laurachipman.netlify.app) *(Replace this with your actual live URL)*
+🔗 laurachipmandesigns.com 
 
 ---
 
