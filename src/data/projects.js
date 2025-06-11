@@ -7,7 +7,12 @@ const projects = [
         title: "AJ’s Bar & Music Hall",
         description: "A full-scale event and music venue website with MongoDB, Next.js, and Tailwind CSS.",
         longDescription: "AJ’s Bar & Music Hall is a dynamic venue website featuring live event listings, admin management, and interactive image galleries. Built with Next.js and Tailwind, backed by MongoDB and GridFS for media storage.",
-        images: ["/images/ajs1.png"],
+        images: [
+            {
+                src: "/images/ajs1.png",
+                caption: "AJ’s Bar & Music Hall homepage preview",
+            }
+        ],
     },
     {
         id: 2,
